@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Exam_Android_Developer</string>
+    <string name="name_usr">Nombre</string>
+    <string name="appat_usr">Apellido paterno</string>
+    <string name="apmat_usr">Apellido materno</string>
+    <string name="phone">Teléfono</string>
+    <string name="mail">Correo-e</string>
+    <string name="lat">Latitud</string>
+    <string name="longitud">Longitud</string>
+    <string name="btn_add_usr">Agregar</string>
+
+    <string name="item_reg">Registro:</string>
+    <string name="item_name">Nombre:</string>
+    <string name="item_appat">Paterno:</string>
+    <string name="item_apmat">Materno:</string>
+    <string name="item_tel">Telefono:</string>
+    <string name="item_mail">Correo:</string>
+    <string name="item_lat">Latitud:</string>
+    <string name="item_long">Longitud:</string>
+</resources>
