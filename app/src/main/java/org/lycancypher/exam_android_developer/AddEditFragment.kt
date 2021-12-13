@@ -2,6 +2,7 @@ package org.lycancypher.exam_android_developer
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -14,9 +15,11 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.net.toUri
 import androidx.core.util.PatternsCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -32,10 +35,29 @@ class AddEditFragment : Fragment() {
 
     private lateinit var binding: FragmentAddEditBinding
     private lateinit var mFusedLocationProviderClient: FusedLocationProviderClient
+    private var lat: String = ""
+    private var long: String = ""
+    private var usrPic: String = ""
 
-    companion object{
-        const val PERMISSION_ID = 33
-        const val PERMISSION_CAMERA_ID = 28
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        binding = FragmentAddEditBinding.inflate(layoutInflater)
+
+        arguments?.let { bundle ->
+            usrPic = bundle.getString("usrPic", "")
+        }
+        if (usrPic != "") {
+//            Toast.makeText(activity, "El bundle es: $usrPic", Toast.LENGTH_LONG).show()
+            with(binding) {
+                ivUserPic.setImageURI(usrPic.toUri())
+                etName.isEnabled = true
+                etApelPat.isEnabled = true
+                etApelMat.isEnabled = true
+                etTel.isEnabled = true
+                etMail.isEnabled = true
+            }
+        }
     }
 
     override fun onCreateView(
@@ -44,10 +66,12 @@ class AddEditFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         //return super.onCreateView(inflater, container, savedInstanceState)
-        binding = FragmentAddEditBinding.inflate(layoutInflater)
+        //binding = FragmentAddEditBinding.inflate(layoutInflater)
         val view = binding.root
 
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext())
+
+        getLocation()
 
         with(binding) {
             btnAddUsr.isEnabled = false
@@ -55,25 +79,19 @@ class AddEditFragment : Fragment() {
             enableBtnAdd()
 
             btnAddUsr.setOnClickListener{
-                var okCorreo = validaEmail(etMail.text.toString())
-                var okTel = validaTel(etTel.text.toString())
+                val okCorreo = validaEmail(etMail.text.toString())
+                val okTel = validaTel(etTel.text.toString())
                 if (okCorreo && okTel) {
                     addUser()
                 }
             }
 
             ivUserPic.setOnClickListener {
-                if(checkCameraPermission()){
-                    openCamera()
-                } else{
-                    requestCameraPermissions()
-                }
+                openCamera()
             }
         }
 
         (requireActivity() as AppCompatActivity).supportActionBar?.title = "Agregar o editar usuario"
-
-        getLocation()
 
         return view
     }
@@ -86,8 +104,9 @@ class AddEditFragment : Fragment() {
             apMat = binding.etApelMat.text.toString(),
             phone = binding.etTel.text.toString(),
             mail = binding.etMail.text.toString(),
-            lat = binding.etLat.text.toString(),
-            longitude = binding.etLong.text.toString()
+            lat = lat,
+            longitude = long,
+            usrPic = usrPic
         )
 
         val executor: ExecutorService = Executors.newSingleThreadExecutor()
@@ -106,7 +125,7 @@ class AddEditFragment : Fragment() {
         })
     }
 
-    private fun enableBtnAdd() {
+    private fun enableBtnAdd () {
         with(binding) {
             etName.addTextChangedListener(object : TextWatcher {
                 override fun afterTextChanged(s: Editable) {}
@@ -184,36 +203,6 @@ class AddEditFragment : Fragment() {
                     checkFields()
                 }
             })
-            etLat.addTextChangedListener(object : TextWatcher {
-                override fun afterTextChanged(s: Editable) {}
-                override fun beforeTextChanged(
-                    s: CharSequence, start: Int,
-                    count: Int, after: Int
-                ) {
-                }
-
-                override fun onTextChanged(
-                    s: CharSequence, start: Int,
-                    before: Int, count: Int
-                ) {
-                    checkFields()
-                }
-            })
-            etLong.addTextChangedListener(object : TextWatcher {
-                override fun afterTextChanged(s: Editable) {}
-                override fun beforeTextChanged(
-                    s: CharSequence, start: Int,
-                    count: Int, after: Int
-                ) {
-                }
-
-                override fun onTextChanged(
-                    s: CharSequence, start: Int,
-                    before: Int, count: Int
-                ) {
-                    checkFields()
-                }
-            })
         }
     }
 
@@ -224,8 +213,6 @@ class AddEditFragment : Fragment() {
                 && etApelMat.text.toString().isNotEmpty()
                 && etTel.text.toString().isNotEmpty()
                 && etMail.text.toString().isNotEmpty()
-                && etLat.text.toString().isNotEmpty()
-                && etLong.text.toString().isNotEmpty()
             ) {
                 btnAddUsr.isEnabled = true
             }
@@ -237,7 +224,7 @@ class AddEditFragment : Fragment() {
             true
         }
         else {
-            Toast.makeText(context, "Ingresa una dirección de correo válida", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, getString(R.string.input_ok_mail), Toast.LENGTH_LONG).show()
             binding.etMail.text.clear()
             binding.btnAddUsr.isEnabled = false
             false
@@ -249,7 +236,7 @@ class AddEditFragment : Fragment() {
             true
         }
         else {
-            Toast.makeText(context, "Ingresa un número de 10 dígitos", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, getString(R.string.input_ok_phone), Toast.LENGTH_LONG).show()
             binding.etTel.text.clear()
             binding.btnAddUsr.isEnabled = false
             false
@@ -259,10 +246,10 @@ class AddEditFragment : Fragment() {
     @SuppressLint("MissingPermission")
     private fun getLocation() {
         if (checkPermissions()) {
-            if (this.isLocationEnabled()) {
+            if (isLocationEnabled()) {
                 mFusedLocationProviderClient.lastLocation.addOnSuccessListener {
-                    binding.etLat.setText(it.latitude.toString())
-                    binding.etLong.setText(it.longitude.toString())
+                    lat =  it.latitude.toString()
+                    long = it.longitude.toString()
                 }
             }
         }
@@ -275,7 +262,7 @@ class AddEditFragment : Fragment() {
         ActivityCompat.requestPermissions(
             requireActivity(),
             arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION),
-            PERMISSION_ID
+            MainActivity.PERMISSION_ID
         )
     }
 
@@ -298,29 +285,9 @@ class AddEditFragment : Fragment() {
     }
 
     private fun openCamera(){
-        //val intent = Intent(this, CameraActivity::class.java)
-        val intent = Intent (activity, CameraActivity::class.java)
-        activity?.startActivity(intent)
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        if (requestCode == PERMISSION_CAMERA_ID) {
-            if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                openCamera()
-            }
-        }
-    }
-
-    private fun checkCameraPermission(): Boolean{
-        return ActivityCompat
-            .checkSelfPermission(requireActivity(), Manifest.permission.CAMERA)== PackageManager.PERMISSION_GRANTED
-    }
-
-    private fun requestCameraPermissions() {
-        ActivityCompat.requestPermissions(
-            requireActivity(),
-            arrayOf(Manifest.permission.CAMERA, Manifest.permission.ACCESS_FINE_LOCATION),
-            PERMISSION_CAMERA_ID
+        findNavController().navigate(
+            R.id.action_addEditFragment_to_cameraFragment
         )
+
     }
 }

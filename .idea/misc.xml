@@ -5,7 +5,8 @@
       <map>
         <entry key="app/src/main/res/layout/activity_camera.xml" value="0.19479166666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2246376811594203" />
-        <entry key="app/src/main/res/layout/fragment_add_edit.xml" value="0.20606884057971014" />
+        <entry key="app/src/main/res/layout/fragment_add_edit.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_camera.xml" value="0.17481884057971014" />
         <entry key="app/src/main/res/layout/fragment_user_list.xml" value="0.21875" />
         <entry key="app/src/main/res/layout/user_item.xml" value="0.25" />
       </map>

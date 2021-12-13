@@ -5,8 +5,6 @@
     <string name="apmat_usr">Apellido materno</string>
     <string name="phone">Teléfono</string>
     <string name="mail">Correo-e</string>
-    <string name="lat">Latitud</string>
-    <string name="longitud">Longitud</string>
     <string name="btn_add_usr">Agregar</string>
 
     <string name="item_reg">Registro:</string>
@@ -17,4 +15,9 @@
     <string name="item_mail">Correo:</string>
     <string name="item_lat">Latitud:</string>
     <string name="item_long">Longitud:</string>
+    <string name="picInfo">Imagen de usuario</string>
+
+    <string name="input_ok_mail">Ingresa una dirección de correo válida</string>
+    <string name="input_ok_phone">Ingresa un número de 10 dígitos</string>
+    <string name="camera_fail">Falló el inicio de la cámara: </string>
 </resources>

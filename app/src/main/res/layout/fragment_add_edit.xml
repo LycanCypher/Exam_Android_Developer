@@ -6,18 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".AddEditFragment">
 
+    <ImageView
+        android:id="@+id/ivUserPic"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:contentDescription="@string/picInfo"
+        android:src="@drawable/item_contact"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/etName"
+        />
+
     <EditText
         android:id="@+id/etName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/name_usr"
         android:inputType="textPersonName"
+        android:enabled="false"
         app:layout_constraintBottom_toTopOf="@+id/etApelPat"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivUserPic"
         app:layout_constraintVertical_bias="0.32" />
 
     <EditText
@@ -27,6 +41,7 @@
         android:ems="10"
         android:hint="@string/appat_usr"
         android:inputType="textPersonName"
+        android:enabled="false"
         app:layout_constraintBottom_toTopOf="@+id/etApelMat"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,6 +55,7 @@
         android:ems="10"
         android:hint="@string/apmat_usr"
         android:inputType="textPersonName"
+        android:enabled="false"
         app:layout_constraintBottom_toTopOf="@+id/etTel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,6 +68,7 @@
         android:ems="10"
         android:hint="@string/phone"
         android:inputType="phone"
+        android:enabled="false"
         app:layout_constraintBottom_toTopOf="@+id/etMail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,45 +81,12 @@
         android:ems="10"
         android:hint="@string/mail"
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/etLat"
+        android:enabled="false"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etTel" />
 
-    <EditText
-        android:id="@+id/etLat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/lat"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/etLong"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etMail" />
-
-    <EditText
-        android:id="@+id/etLong"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/longitud"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/ivUserPic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etLat" />
-
-    <ImageView
-        android:id="@+id/ivUserPic"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/item_contact"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/etLong"
-        />
 
     <Button
         android:id="@+id/btnAddUsr"
@@ -120,4 +104,5 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent=".85" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

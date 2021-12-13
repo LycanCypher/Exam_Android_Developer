@@ -13,5 +13,6 @@ data class User(
     @ColumnInfo val phone: String?,
     @ColumnInfo val mail: String?,
     @ColumnInfo val lat: String?,
-    @ColumnInfo val longitude: String?
+    @ColumnInfo val longitude: String?,
+    @ColumnInfo(name = "usr_pic") val usrPic: String?
 )

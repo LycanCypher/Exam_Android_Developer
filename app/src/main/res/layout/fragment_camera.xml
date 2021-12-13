@@ -7,8 +7,8 @@
     android:layout_height="fill_parent"
     >
 
-    <TextureView
-        android:id="@+id/camera_preview"
+    <androidx.camera.view.PreviewView
+        android:id="@+id/txvCameraView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -16,8 +16,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <ImageButton
-        android:id="@+id/capture_button"
+        android:id="@+id/btnCapture"
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:layout_margin="24dp"
