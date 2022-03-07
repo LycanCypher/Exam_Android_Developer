@@ -251,6 +251,9 @@ class AddEditFragment : Fragment() {
                     lat =  it.latitude.toString()
                     long = it.longitude.toString()
                 }
+                mFusedLocationProviderClient.lastLocation.addOnFailureListener {
+                    Toast.makeText(activity, getString(R.string.location_fail), Toast.LENGTH_LONG).show()
+                }
             }
         }
         else {

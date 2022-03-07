@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
@@ -51,6 +52,8 @@ class CameraFragment : Fragment() {
         binding.btnCapture.setOnClickListener {
             takePhoto()
         }
+
+        (requireActivity() as AppCompatActivity).supportActionBar?.title = "Tomar foto"
 
         return view
     }
@@ -166,7 +169,7 @@ class CameraFragment : Fragment() {
                     "No tienes los permisos",
                     Toast.LENGTH_LONG).show()
 
-                //finish()
+                requireActivity().finish()
             }
         }
     }

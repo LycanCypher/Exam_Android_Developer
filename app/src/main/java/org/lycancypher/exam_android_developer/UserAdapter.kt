@@ -4,7 +4,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import org.lycancypher.exam_android_developer.room.User
 
@@ -16,13 +18,10 @@ class UserAdapter (
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val id: TextView = view.findViewById(R.id.tvId)
+        val pic: ImageView = view.findViewById(R.id.ivUserThumb)
         val name: TextView = view.findViewById(R.id.tvName)
         val appat: TextView = view.findViewById(R.id.tvApelPat)
         val apmat: TextView = view.findViewById(R.id.tvApelMat)
-        val phone: TextView = view.findViewById(R.id.tvTel)
-        val mail: TextView = view.findViewById(R.id.tvMail)
-        val lat: TextView = view.findViewById(R.id.tvLat)
-        val long: TextView = view.findViewById(R.id.tvLong)
         val editBtn: ImageButton = view.findViewById(R.id.btnEdit)
         val deleteBtn: ImageButton = view.findViewById(R.id.btnDelete)
     }
@@ -43,10 +42,11 @@ class UserAdapter (
         holder.name.text = userArray?.get(position)?.name ?: ""
         holder.appat.text = userArray?.get(position)?.apPat ?: ""
         holder.apmat.text = userArray?.get(position)?.apMat ?: ""
-        holder.phone.text = userArray?.get(position)?.phone ?: ""
+        holder.pic.setImageURI(userArray?.get(position)?.usrPic?.toUri())
+        /*holder.phone.text = userArray?.get(position)?.phone ?: ""
         holder.mail.text = userArray?.get(position)?.mail ?: ""
         holder.lat.text = (userArray?.get(position)?.lat ?: "").toString()
-        holder.long.text = (userArray?.get(position)?.longitude ?: "").toString()
+        holder.long.text = (userArray?.get(position)?.longitude ?: "").toString()*/
 
         holder.deleteBtn.setOnClickListener {
             userArray?.get(position)?.let { user ->

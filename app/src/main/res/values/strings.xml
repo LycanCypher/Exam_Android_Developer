@@ -8,16 +8,20 @@
     <string name="btn_add_usr">Agregar</string>
 
     <string name="item_reg">Registro:</string>
-    <string name="item_name">Nombre:</string>
-    <string name="item_appat">Paterno:</string>
-    <string name="item_apmat">Materno:</string>
+    <string name="item_name">Nombre</string>
+    <string name="item_appat">Paterno</string>
+    <string name="item_apmat">Materno</string>
     <string name="item_tel">Telefono:</string>
     <string name="item_mail">Correo:</string>
+    <string name="ubica">Ubicación:</string>
     <string name="item_lat">Latitud:</string>
     <string name="item_long">Longitud:</string>
+
+
     <string name="picInfo">Imagen de usuario</string>
 
     <string name="input_ok_mail">Ingresa una dirección de correo válida</string>
     <string name="input_ok_phone">Ingresa un número de 10 dígitos</string>
     <string name="camera_fail">Falló el inicio de la cámara: </string>
+    <string name="location_fail">No fue posible recuperar la última ubicación</string>
 </resources>

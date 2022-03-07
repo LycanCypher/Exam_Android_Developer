@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserDetailFragment">
+
+    <TextView
+        android:id="@+id/tvIdDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/item_reg"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tvNameDetail"
+        />
+
+    <TextView
+        android:id="@+id/tvNameDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/item_name"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tvApelPatDetail"
+        app:layout_constraintTop_toBottomOf="@+id/tvIdDetail"
+        />
+
+    <TextView
+        android:id="@+id/tvApelPatDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/item_appat"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toEndOf="@id/tvNameDetail"
+        app:layout_constraintEnd_toStartOf="@id/tvApelMatDetail"
+        app:layout_constraintTop_toBottomOf="@+id/tvIdDetail"
+        app:layout_constraintBottom_toTopOf="@+id/ivUserPicDetail"
+        />
+
+    <TextView
+        android:id="@+id/tvApelMatDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/item_apmat"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toEndOf="@id/tvApelPatDetail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvIdDetail"
+        />
+
+    <ImageView
+        android:id="@+id/ivUserPicDetail"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/item_contact"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvApelPatDetail"
+        />
+
+    <TextView
+        android:id="@+id/tvTelDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/item_tel"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@id/tvIdDetail"
+        app:layout_constraintTop_toBottomOf="@+id/ivUserPicDetail"
+        />
+
+    <TextView
+        android:id="@+id/tvEmailDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/item_mail"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@id/tvIdDetail"
+        app:layout_constraintTop_toBottomOf="@+id/tvTelDetail"
+        />
+
+    <TextView
+        android:id="@+id/tvUbica"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ubica"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@id/tvIdDetail"
+        app:layout_constraintTop_toBottomOf="@+id/tvEmailDetail"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
